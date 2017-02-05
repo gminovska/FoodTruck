@@ -60,45 +60,48 @@ class Food
     /**
      *Sets the name, description, price and extras fields based on the food type.
      */
-    private function SetProperties(){
-    switch ($this->type) {
-        case "pizza":
-            $this->name = "Italian Pizza";
-            $this->description ="Delicious taste of Italy,with fresh mozzarella and olive oil";
-            $this->price = 7.50;
-            $this->extras = ["Peppers", "Mushrooms", "Tomatoes", "Pesto"];
-            break;
-        case "burrito":
-            $this->name = "Mexican Burrito";
-            $this->description ="¡Ay, caramba! Straight from burrito heaven to your table";
-            $this->price = 5.25;
-            $this->extras = ["Cilantro", "Sour Cream", "Guacamole", "Salsa"];
-            break;
-        case "salad":
-            $this->name = "Greek Salad";
-            $this->description ="Fresh like a summer breeze over the Mediterranean";
-            $this->price = 4.50;
-            $this->extras = ["Olives", "Feta Cheese", "Oregano", "Onions"];
-            break;
-        case "curry":
-            $this->name = "Indian Curry";
-            $this->description ="Spicy and rich vegetable curry, simply irresistible";
-            $this->price = 7.25;
-            $this->extras = ["Hot Peppers", "Coconut Chutney", "Raita"];
-            break;
-        default:
-            $this->name = "Name not set";
-            $this->description ="No description";
-            $this->price = 0;
-            $this->extras = [];
-            break;
+    private function SetProperties()
+    {
+        switch ($this->type) 
+        {
+            case "pizza":
+                $this->name = "Italian Pizza";
+                $this->description = "Delicious taste of Italy, with fresh mozzarella and olive oil";
+                $this->price = 7.50;
+                $this->extras = ["Peppers", "Mushrooms", "Tomatoes", "Pesto"];
+                break;
+            case "burrito":
+                $this->name = "Mexican Burrito";
+                $this->description = "¡Ay, caramba! Straight from burrito heaven to your table";
+                $this->price = 5.25;
+                $this->extras = ["Cilantro", "Sour Cream", "Guacamole", "Salsa"];
+                break;
+            case "salad":
+                $this->name = "Greek Salad";
+                $this->description = "Fresh like a summer breeze over the Mediterranean";
+                $this->price = 4.50;
+                $this->extras = ["Olives", "Feta Cheese", "Oregano", "Onions"];
+                break;
+            case "curry":
+                $this->name = "Indian Curry";
+                $this->description = "Spicy and rich vegetable curry, simply irresistible";
+                $this->price = 7.25;
+                $this->extras = ["Hot Peppers", "Coconut Chutney", "Raita"];
+                break;
+            default:
+                $this->name = "Name not set";
+                $this->description = "No description";
+                $this->price = 0;
+                $this->extras = [];
+                break;
+        }
     }
-}
     /**
      * Calculates the base price for the number of the items ordered
      * @return string $basePrice formatted to two decimal places
     */
-    public function CalculateBasePrice(){
+    public function CalculateBasePrice()
+    {
         $basePrice = $this->price * $this->quantity;
         return number_format($basePrice, 2);
     }
@@ -107,7 +110,8 @@ class Food
      * Counts the number of toppings selected and multiplies it by the base toppings fee
      * @return string $toppingsCost formatted to two decimal places
      */
-    public function CalculateToppingsCost(){
+    public function CalculateToppingsCost()
+    {
         $toppingsCost = count($this->toppings) * self::$TOPPINGS_FEE;
         return number_format($toppingsCost, 2);
     }
@@ -116,7 +120,8 @@ class Food
      * Calculates the total cost of all the selected toppings
      * @return string formatted to two decimal places
      */
-    public function CalculateToppingsCostTotal(){
+    public function CalculateToppingsCostTotal()
+    {
         $toppingsCostTotal = $this->CalculateToppingsCost() * $this->quantity;
         return number_format($toppingsCostTotal, 2);
     }
@@ -127,7 +132,8 @@ class Food
      * @return string formatted to two decimal places
     */
     
-    public function CalculateSubtotalBeforeTax() {
+    public function CalculateSubtotalBeforeTax() 
+    {
         $subtotalBT = ($this->price + $this->CalculateToppingsCost())* $this->quantity;
         return number_format($subtotalBT, 2);
     }
@@ -137,7 +143,8 @@ class Food
      * Calculates the price of the food item with tax
      * @return string formatted to two decimal places
      */
-    public function CalculateTax() {
+    public function CalculateTax() 
+    {
         //$taxTotal = ($this->price + $this->CalculateToppingsCost()) * self::$TAX;
         $taxTotal = $this->CalculateSubtotalBeforeTax() * self::$TAX;
         return number_format($taxTotal, 2);
@@ -148,16 +155,12 @@ class Food
      * with toppings and tax included
      * @return string $subtotal formatted to two decimal places
      */
-    public function CalculatePerItemSubtotal(){
+    public function CalculatePerItemSubtotal()
+    {
         //@todo implement method
         //$subtotal = ($this->price  + $this->CalculateToppingsCost())  * (self::$TAX + 1);
         $subtotal = $this->CalculateSubtotalBeforeTax()  * (self::$TAX + 1);
-        
+
         return number_format($subtotal, 2);
     }
-
-    
-
-
-
 }

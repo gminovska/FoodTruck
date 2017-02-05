@@ -20,14 +20,19 @@ require "food.php";
 //Building the form dynamically, from an array of objects
 
 //instantiate initial objects representing the types of food offered
-$pizza = new Food("pizza");
+$pizza   = new Food("pizza");
 $burrito = new Food("burrito");
-$salad = new Food("salad");
-$curry = new Food("curry");
+$salad   = new Food("salad");
+$curry   = new Food("curry");
 
 
 /** @var array $foodOffer is an array of the available food objects*/
-$foodOffer = array($pizza,$burrito,$salad,$curry);
+$foodOffer = array(
+    $pizza,
+    $burrito,
+    $salad,
+    $curry
+);
 
 include 'includes/header.php';
 ?>
@@ -36,30 +41,29 @@ include 'includes/header.php';
     <div class="col-sm-6">
     <h3>Menu</h3>
     <?php
-    //iterate through the array of food objects and populate the menu with data from the objects
-    foreach ($foodOffer as $food)
-
-        echo '<div class = "menuItem">
+//iterate through the array of food objects and populate the menu with data from the objects
+foreach ($foodOffer as $food)
+    echo '<div class = "menuItem">
               <h5 class="foodName">' . $food->name . '</h5>
               <p class="price"> | $' . $food->price . '</p>
               <p>' . $food->description . '</p>
-              </div>' ;
+              </div>';
 
 
-    ?>
-    </div>
+?>
+   </div>
 <div id="template" class="hide">
     <div class="singleItem">
         <select class="item" name="items[]" required aria-required="true">
             <option value="" disabled selected>I want..</option>
             <?php
 
-            //create the food select dropdown
-            foreach ($foodOffer as $food)
-                echo '
-              <option value="'.$food->type . '">' . $food->name . '</option>';
+//create the food select dropdown
+foreach ($foodOffer as $food)
+    echo '
+              <option value="' . $food->type . '">' . $food->name . '</option>';
 
-            ?>
+?>
 
         </select>
 
@@ -68,28 +72,28 @@ include 'includes/header.php';
 
 
         <?php
-        //create the additional toppings
-        foreach ($foodOffer as $food) {
-
-
-            $availableToppings = $food->extras;
-//           echo var_dump($availableToppings);
-            if ($availableToppings) {
-                echo '<div class="hide toppings ' . $food->type . '">
+//create the additional toppings
+foreach ($foodOffer as $food) {
+    
+    
+    $availableToppings = $food->extras;
+    //           echo var_dump($availableToppings);
+    if ($availableToppings) {
+        echo '<div class="hide toppings ' . $food->type . '">
                           <p>Additional Toppings - $0.75 each</p>';
-                foreach ($availableToppings as $topping) {
-//                   echo var_dump($topping);
-
-                    echo '
+        foreach ($availableToppings as $topping) {
+            //                   echo var_dump($topping);
+            
+            echo '
                        <label><input type="checkbox" value="' . $topping . '">' . $topping . '</label>
                        
                        ';
-                }
-                echo '</div>';
-            }
         }
-        ?>
-    </div>
+        echo '</div>';
+    }
+}
+?>
+   </div>
 </div>
 
 <form method="post" action="formhandler.php">
@@ -106,4 +110,3 @@ include 'includes/header.php';
 
 <?php
 include 'includes/footer.php';
-
