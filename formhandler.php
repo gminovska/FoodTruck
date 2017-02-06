@@ -40,33 +40,33 @@ if(!isset($_POST["items"])) {
         echo '<div class = "orderSummary menuItem col-md-6 col-md-offset-3">
               
         <h5 class="foodName">' . $food->name . ' x ' . $food->quantity . '</h5>
-        <p class="foodName cost">$' . $food->CalculatePerItemSubtotal() . ' </p>
+        <p class="foodName cost">$' . $food->calculatePerItemSubtotal() . ' </p>
         <button type="button" class="btn details"><i class="fa fa-chevron-down"></i></button>
         <div class = "priceDetails hide" >
         <p>Base price:(' . $food->price . ' /each)</p>
-        <p class="cost">$' . $food->CalculateBasePrice() . ' </p>';
+        <p class="cost">$' . $food->calculateBasePrice() . ' </p>';
 
         //don't display toppings price if no toppings were selected
         if($toppings != []) {
-            echo '<p>+' . implode(", ", $food->toppings) . '(' . $food->CalculateToppingsCost() . ' /each) </p>
-            <p class="cost">$' . $food->CalculateToppingsCostTotal() . '  </p>';
+            echo '<p>+' . implode(", ", $food->toppings) . '(' . $food->calculateToppingsCost() . ' /each) </p>
+            <p class="cost">$' . $food->calculateToppingsCostTotal() . '  </p>';
         }//end of if statement
 
         echo '
         <!-- added by Ayumi 2/3-->
         <!-- <p>Subtotal before tax (' . $food->quantity . ' orders): </p>
-        <p class="cost">$' . $food->CalculateSubtotalBeforeTax() . ' </p>-->
+        <p class="cost">$' . $food->calculateSubtotalBeforeTax() . ' </p>-->
               
         <p>Tax (9.6%)</p>
-        <p class="cost">$' . $food->CalculateTax() . ' </p>
+        <p class="cost">$' . $food->calculateTax() . ' </p>
         <hr>
         <p>Subtotal:</p>
-        <p class="cost">$' . $food->CalculatePerItemSubtotal() . ' </p>             
+        <p class="cost">$' . $food->calculatePerItemSubtotal() . ' </p>             
         </div>
         </div>';
     
         //calculate total
-        $total += $food->CalculatePerItemSubtotal();
+        $total += $food->calculatePerItemSubtotal();
     }//end of foreach loop
 
     //display total
