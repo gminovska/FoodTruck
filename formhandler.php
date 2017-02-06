@@ -50,7 +50,7 @@ if(!isset($_POST["items"])) {
         if($toppings != []) {
             echo '<p>+' . implode(", ", $food->toppings) . '(' . $food->CalculateToppingsCost() . ' /each) </p>
             <p class="cost">$' . $food->CalculateToppingsCostTotal() . '  </p>';
-        }//edn of if statement
+        }//end of if statement
 
         echo '
         <!-- added by Ayumi 2/3-->
