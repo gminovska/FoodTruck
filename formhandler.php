@@ -29,28 +29,31 @@ if(!isset($_POST["items"])) {
         } else {
             $toppings = [];
         }
+
         /** @var array $foodOrder stores the ordered food items*/
         $foodOrder[] = new Food($type, $quantity, $toppings);
     }
+
+
 
     //create the order summary showing all the items and toppings ordered,
     //the subtotal for each item, and a cumulative total cost due.
     $total = 0;
     foreach ($foodOrder as $food) {
-        echo '<div class = "orderSummary menuItem col-md-6 col-md-offset-3">
-              
-        <h5 class="foodName">' . $food->name . ' x ' . $food->quantity . '</h5>
-        <p class="foodName cost">$' . $food->calculatePerItemSubtotal() . ' </p>
-        <button type="button" class="btn details"><i class="fa fa-chevron-down"></i></button>
-        <div class = "priceDetails hide" >
-        <p>Base price:(' . $food->price . ' /each)</p>
-        <p class="cost">$' . $food->calculateBasePrice() . ' </p>';
+
+        echo '  <div class = "orderSummary menuItem col-md-6 col-md-offset-3">          
+                <h5 class="foodName">' . $food->name . ' x ' . $food->quantity . '</h5>
+                <p class="foodName cost">$' . $food->calculatePerItemSubtotal() . ' </p>
+                <button type="button" class="btn details"><i class="fa fa-chevron-down"></i></button>
+                <div class = "priceDetails hide" >
+                <p>Base price:(' . $food->price . ' /each)</p>
+                <p class="cost">$' . $food->calculateBasePrice() . ' </p>';
 
         //don't display toppings price if no toppings were selected
-        if($toppings != []) {
+       if(!empty($food->toppings)) {
             echo '<p>+' . implode(", ", $food->toppings) . '(' . $food->calculateToppingsCost() . ' /each) </p>
             <p class="cost">$' . $food->calculateToppingsCostTotal() . '  </p>';
-        }//end of if statement
+       }//end of if statement
 
         echo '
         <!-- added by Ayumi 2/3-->
