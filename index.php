@@ -81,8 +81,6 @@ foreach ($foodOffer as $food) {
         echo '<div class="hide toppings ' . $food->type . '">
                           <p>Additional Toppings - $0.75 each</p>';
         foreach ($availableToppings as $topping) {
-            //                   echo var_dump($topping);
-            
             echo '<label><input type="checkbox" value="' . $topping . '">' . $topping . '</label>';
         }//end of foreach
         echo '</div>';
