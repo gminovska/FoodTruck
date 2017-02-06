@@ -50,7 +50,7 @@ if(!isset($_POST["items"])) {
         if($toppings != []) {
             echo '<p>+' . implode(", ", $food->toppings) . '(' . $food->CalculateToppingsCost() . ' /each) </p>
             <p class="cost">$' . $food->CalculateToppingsCostTotal() . '  </p>';
-        }
+        }//edn of if statement
 
         echo '
         <!-- added by Ayumi 2/3-->
@@ -67,7 +67,7 @@ if(!isset($_POST["items"])) {
     
         //calculate total
         $total += $food->CalculatePerItemSubtotal();
-    }
+    }//end of foreach loop
 
     //display total
     echo '<div id="finalPrice" class = "orderSummary menuItem col-md-6 col-md-offset-3">
