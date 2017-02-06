@@ -60,10 +60,9 @@ class Food
     /**
      *Sets the name, description, price and extras fields based on the food type.
      */
-    private function SetProperties()
+    private function setProperties()
     {
-        switch ($this->type) 
-        {
+        switch ($this->type) {
             case "pizza":
                 $this->name = "Italian Pizza";
                 $this->description = "Delicious taste of Italy, with fresh mozzarella and olive oil";
@@ -100,7 +99,7 @@ class Food
      * Calculates the base price for the number of the items ordered
      * @return string $basePrice formatted to two decimal places
     */
-    public function CalculateBasePrice()
+    public function calculateBasePrice()
     {
         $basePrice = $this->price * $this->quantity;
         return number_format($basePrice, 2);
@@ -110,7 +109,7 @@ class Food
      * Counts the number of toppings selected and multiplies it by the base toppings fee
      * @return string $toppingsCost formatted to two decimal places
      */
-    public function CalculateToppingsCost()
+    public function calculateToppingsCost()
     {
         $toppingsCost = count($this->toppings) * self::$TOPPINGS_FEE;
         return number_format($toppingsCost, 2);
@@ -120,9 +119,9 @@ class Food
      * Calculates the total cost of all the selected toppings
      * @return string formatted to two decimal places
      */
-    public function CalculateToppingsCostTotal()
+    public function calculateToppingsCostTotal()
     {
-        $toppingsCostTotal = $this->CalculateToppingsCost() * $this->quantity;
+        $toppingsCostTotal = $this->calculateToppingsCost() * $this->quantity;
         return number_format($toppingsCostTotal, 2);
     }
 
@@ -132,9 +131,9 @@ class Food
      * @return string formatted to two decimal places
     */
     
-    public function CalculateSubtotalBeforeTax() 
+    public function calculateSubtotalBeforeTax() 
     {
-        $subtotalBT = ($this->price + $this->CalculateToppingsCost())* $this->quantity;
+        $subtotalBT = ($this->price + $this->calculateToppingsCost())* $this->quantity;
         return number_format($subtotalBT, 2);
     }
 
@@ -143,10 +142,10 @@ class Food
      * Calculates the price of the food item with tax
      * @return string formatted to two decimal places
      */
-    public function CalculateTax() 
+    public function calculateTax() 
     {
         //$taxTotal = ($this->price + $this->CalculateToppingsCost()) * self::$TAX;
-        $taxTotal = $this->CalculateSubtotalBeforeTax() * self::$TAX;
+        $taxTotal = $this->calculateSubtotalBeforeTax() * self::$TAX;
         return number_format($taxTotal, 2);
     }
 
@@ -155,11 +154,11 @@ class Food
      * with toppings and tax included
      * @return string $subtotal formatted to two decimal places
      */
-    public function CalculatePerItemSubtotal()
+    public function calculatePerItemSubtotal()
     {
         //@todo implement method
         //$subtotal = ($this->price  + $this->CalculateToppingsCost())  * (self::$TAX + 1);
-        $subtotal = $this->CalculateSubtotalBeforeTax()  * (self::$TAX + 1);
+        $subtotal = $this->calculateSubtotalBeforeTax()  * (self::$TAX + 1);
 
         return number_format($subtotal, 2);
     }

@@ -40,15 +40,15 @@ include 'includes/header.php';
 
     <div class="col-sm-6">
     <h3>Menu</h3>
-    <?php
+<?php
 //iterate through the array of food objects and populate the menu with data from the objects
-foreach ($foodOffer as $food)
+foreach ($foodOffer as $food) {
     echo '<div class = "menuItem">
               <h5 class="foodName">' . $food->name . '</h5>
               <p class="price"> | $' . $food->price . '</p>
               <p>' . $food->description . '</p>
               </div>';
-
+}
 
 ?>
    </div>
@@ -59,10 +59,9 @@ foreach ($foodOffer as $food)
             <?php
 
 //create the food select dropdown
-foreach ($foodOffer as $food)
-    echo '
-              <option value="' . $food->type . '">' . $food->name . '</option>';
-
+foreach ($foodOffer as $food) {
+    echo '<option value="' . $food->type . '">' . $food->name . '</option>';
+}
 ?>
 
         </select>
@@ -82,16 +81,11 @@ foreach ($foodOffer as $food) {
         echo '<div class="hide toppings ' . $food->type . '">
                           <p>Additional Toppings - $0.75 each</p>';
         foreach ($availableToppings as $topping) {
-            //                   echo var_dump($topping);
-            
-            echo '
-                       <label><input type="checkbox" value="' . $topping . '">' . $topping . '</label>
-                       
-                       ';
-        }
+            echo '<label><input type="checkbox" value="' . $topping . '">' . $topping . '</label>';
+        }//end of foreach
         echo '</div>';
-    }
-}
+    }//end of if statement
+}//end of foreach statement
 ?>
    </div>
 </div>
