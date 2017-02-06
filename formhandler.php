@@ -46,12 +46,12 @@ if(!isset($_POST["items"])) {
                 <p class="foodName cost">$' . $food->calculatePerItemSubtotal() . ' </p>
                 <button type="button" class="btn details"><i class="fa fa-chevron-down"></i></button>
                 <div class = "priceDetails hide" >
-                <p>Base price:(' . $food->price . ' /each)</p>
+                <p>Base price: ($' . $food->price . ' /per item)</p>
                 <p class="cost">$' . $food->calculateBasePrice() . ' </p>';
 
         //don't display toppings price if no toppings were selected
        if(!empty($food->toppings)) {
-            echo '<p>+' . implode(", ", $food->toppings) . '(' . $food->calculateToppingsCost() . ' /each) </p>
+            echo '<p>+ ' . implode(", ", $food->toppings) . ' ($' . $food->calculateToppingsCost() . ' /per item) </p>
             <p class="cost">$' . $food->calculateToppingsCostTotal() . '  </p>';
        }//end of if statement
 
